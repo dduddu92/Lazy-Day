@@ -14,6 +14,9 @@ module.exports = {
         gangwon: ['GangwonEdu_OTFBoldA', 'sans-serif'],
         pretendard: ['Pretendard-Regular', 'sans-serif'],
       },
+      backgroundImage: {
+        banner: `url('../public/images/banner.jpg')`,
+      },
     },
   },
   plugins: [],

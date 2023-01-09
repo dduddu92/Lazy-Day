@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { TiPencil } from 'react-icons/ti';
 import User from './User';
 import Button from './ui/Button';
-import { useAuthContext } from './context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
   return (
-    <header className="flex justify-between border-b border-stone-300 p-3">
+    <header className="flex justify-between border-b border-stone-300 p-3 bg-brand">
       <Link to="/" className="flex items-center text-4xl text-brand">
         <img className="w-9 mr-2" src="/images/sloth.png" alt="Lazy Day Brand Logo" />
         <h1 className="font-gangwon">Lazy Day</h1>
