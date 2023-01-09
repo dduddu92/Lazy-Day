@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { addOrUpdateToCart } from '../api/firebase';
 import Button from '../components/ui/Button';
 import { useAuthContext } from '../context/AuthContext';
 
@@ -13,7 +14,8 @@ export default function ProductDetail() {
   const [selected, setSelected] = useState(options && options[0]);
   const handleSelect = (e) => setSelected(e.target.value);
   const handleClick = (e) => {
-    //사용자의 아이디와 제품의 정보가 필요함
+    const product = { id, image, title, price, option: selected, quantity: 1 };
+    addOrUpdateToCart(uid, product);
   };
   return (
     <>
@@ -37,7 +39,7 @@ export default function ProductDetail() {
               {options && options.map((option, index) => <option key={index}>{option}</option>)}
             </select>
           </div>
-          <Button text="장바구니에 추가" onclick={handleClick} />
+          <Button text="장바구니에 추가" onClick={handleClick} />
         </div>
       </section>
     </>
