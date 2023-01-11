@@ -5,10 +5,12 @@ import { FaEquals } from 'react-icons/fa';
 import PriceCard from '../components/PriceCard';
 import Button from '../components/ui/Button';
 import useCart from '../hooks/useCart';
+import { useNavigate } from 'react-router-dom';
 
 const SHIPPING = 3000;
 
 export default function MyCart() {
+  const navigate = useNavigate();
   const {
     cartQuery: { isLoading, data: products },
   } = useCart();
@@ -18,6 +20,7 @@ export default function MyCart() {
   const totalPrice =
     products &&
     products.reduce((prev, current) => prev + parseInt(current.price) * current.quantity, 0);
+
   return (
     <section className="p-8 flex flex-col h-[calc(100vh-65px)]">
       <p className="text-3xl text-center font-bold pb-8 border-b borde-gray-300 font-gangwon">
@@ -25,8 +28,8 @@ export default function MyCart() {
       </p>
       {!hasProducts && (
         <div className="flex flex-col justify-center items-center flex-1">
-          <img src="./images/sloth.png" className="w-1/4 mb-10" alt="brand logo" />
-          <Button text="상품 담으러 가기" size="large" />
+          <img src="./images/sloth.png" className=" w-52 h-52 mb-10" alt="brand logo" />
+          <Button text="상품 담으러 가기" size="equalMedium" onClick={() => navigate('/')} />
         </div>
       )}
       {hasProducts && (
@@ -41,7 +44,7 @@ export default function MyCart() {
             <FaEquals className="shrink-0" />
             <PriceCard text="결제 금액" price={totalPrice + SHIPPING} />
           </div>
-          <Button text="주문하기" size="medium" />
+          <Button text="주문하기" size="equalMedium" />
         </>
       )}
     </section>

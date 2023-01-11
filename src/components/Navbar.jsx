@@ -15,7 +15,8 @@ export default function Navbar() {
         <h1 className="font-gangwon">Lazy Day</h1>
       </Link>
       <nav className="flex items-center gap-4">
-        <Link to="/products">Products</Link>
+        <Link to="/products">모든 제품</Link>
+        <Link to="/board">질문과 답변</Link>
         {user && (
           <Link to="/carts">
             <CartStatus />

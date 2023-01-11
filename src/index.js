@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import ProductDetail from './pages/ProductDetail';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProtectedRoute from './pages/ProtectedRoute';
+import Board from './pages/Board';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             <MyCart />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: '/board',
+        element: <Board />,
       },
     ],
   },

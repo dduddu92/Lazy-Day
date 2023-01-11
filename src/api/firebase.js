@@ -8,7 +8,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getDatabase, ref, set, get, remove } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  remove,
+  query,
+  limitToFirst,
+  orderByKey,
+} from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -61,13 +70,23 @@ export async function addNewProduct(product, image) {
 }
 
 export async function getProducts() {
-  return get(ref(database, 'products')).then((snapshot) => {
+  const firstQuery = query(ref(database, 'products'), orderByKey('price'), limitToFirst(20));
+  // return get(ref(database, 'products')).then((snapshot) => {
+  //   if (snapshot.exists()) {
+  //     return Object.values(snapshot.val());
+  //   }
+  //   return [];
+  // }
+  return get(firstQuery).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
+      // console.log(snapshot.val());
     }
     return [];
   });
 }
+
+export async function nextProducts() {}
 
 export async function getCart(userId) {
   return get(ref(database, `carts/${userId}`)).then((snapshot) => {
