@@ -19,9 +19,16 @@ export default function MyCart() {
     products &&
     products.reduce((prev, current) => prev + parseInt(current.price) * current.quantity, 0);
   return (
-    <section className="p-8 flex flex-col">
-      <p className="text-2xl text-center font-bold pb-8 border-b borde-gray-300">내 장바구니</p>
-      {!hasProducts && <p>장바구니에 상품이 없습니다. 쇼핑하러 가볼까요?</p>}
+    <section className="p-8 flex flex-col h-[calc(100vh-65px)]">
+      <p className="text-3xl text-center font-bold pb-8 border-b borde-gray-300 font-gangwon">
+        내 장바구니
+      </p>
+      {!hasProducts && (
+        <div className="flex flex-col justify-center items-center flex-1">
+          <img src="./images/sloth.png" className="w-1/4 mb-10" alt="brand logo" />
+          <Button text="상품 담으러 가기" size="large" />
+        </div>
+      )}
       {hasProducts && (
         <>
           <ul className="border-b border-gray-300 mb-8 p-4 px-8">
@@ -34,7 +41,7 @@ export default function MyCart() {
             <FaEquals className="shrink-0" />
             <PriceCard text="결제 금액" price={totalPrice + SHIPPING} />
           </div>
-          <Button text="주문하기" />
+          <Button text="주문하기" size="medium" />
         </>
       )}
     </section>

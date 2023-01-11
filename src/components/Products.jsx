@@ -10,7 +10,7 @@ export default function Products() {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <ul className="grid grid-cols-1 md:grid-cols-5 lg-grid-cols-5 gap-5 p-5">
+      <ul className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-10 p-10">
         {products && products.map((product) => <ProductCard key={product.id} product={product} />)}
       </ul>
     </>

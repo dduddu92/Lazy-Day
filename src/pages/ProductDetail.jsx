@@ -26,7 +26,7 @@ export default function ProductDetail() {
     <>
       <p className="mx-12 mt-4 text-gray-700">{category}</p>
       <section className="flex flex-col md:flex-row p-5">
-        <img className="w-6/12 px-5 basis-7/12" src={image} alt={title} />
+        <img className="w-6/12 object-fit px-5 basis-7/12" src={image} alt={title} />
         <div className="w-full basis-5/12 flex flex-col p-5">
           <h2 className="text-3xl font-bold py-2 ">{title}</h2>
           <p className="text-2xl font-bold py-2 border-b border-gray-400">₩{price}</p>
@@ -45,7 +45,7 @@ export default function ProductDetail() {
             </select>
           </div>
           {success && <p className="my-2">{success}</p>}
-          <Button text="장바구니에 추가" onClick={handleClick} />
+          <Button text="장바구니에 추가" onClick={handleClick} size="equalMedium" />
         </div>
       </section>
     </>

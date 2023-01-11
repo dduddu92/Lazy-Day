@@ -116,7 +116,11 @@ export default function NewProduct() {
             required
             onChange={handleChange}
           />
-          <Button text={isUploading ? '업로드 중...' : '제품 등록하기'} disabled={isUploading} />
+          <Button
+            text={isUploading ? '업로드 중...' : '제품 등록하기'}
+            size="equalMedium"
+            disabled={isUploading}
+          />
         </form>
       </div>
     </section>
