@@ -36,5 +36,5 @@ code {
 }
 
 input {
-  @apply p-4 outline-none border border-gray-300 my-1 rounded-md;
+  @apply p-4 outline-none border border-gray-300 mb-2 rounded-md;
 }
