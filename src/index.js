@@ -10,7 +10,8 @@ import NotFound from './pages/NotFound';
 import ProductDetail from './pages/ProductDetail';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProtectedRoute from './pages/ProtectedRoute';
-import Board from './pages/Board';
+import Questions from './pages/Questions';
+import Writing from './pages/Writing';
 
 const router = createBrowserRouter([
   {
@@ -42,8 +43,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/board',
-        element: <Board />,
+        path: '/questions',
+        element: <Questions />,
+      },
+      {
+        path: '/questions/new',
+        element: <Writing />,
       },
     ],
   },

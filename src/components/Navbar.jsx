@@ -16,7 +16,7 @@ export default function Navbar() {
       </Link>
       <nav className="flex items-center gap-4">
         <Link to="/products">모든 제품</Link>
-        <Link to="/board">질문과 답변</Link>
+        <Link to="/questions">질문과 답변</Link>
         {user && (
           <Link to="/carts">
             <CartStatus />
@@ -27,7 +27,7 @@ export default function Navbar() {
             <TiPencil />
           </Link>
         )}
-        {user && <User user={user} />}
+        {user && <User user={user} status="hidden" imgSize="normal" />}
         {!user && <Button text="Login" onClick={login} size="medium" />}
         {user && <Button text="Logout" onClick={logout} size="medium" />}
       </nav>

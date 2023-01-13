@@ -23,13 +23,11 @@ export default function ProductDetail() {
     });
   };
   return (
-    <section className="flex flex-col md:flex-row my-10 justify-center w-3/4 mx-auto">
-      <img
-        className="w-6/12 object-fit mr-20 basis-6/12 md:h-[calc(100vh-145px)] rounded-lg"
-        src={image}
-        alt={title}
-      />
-      <div className="w-full basis-6/12 flex flex-col py-5">
+    <section className="flex flex-col my-10 w-3/4 mx-auto md:flex-row ">
+      <div className="w-6/12 object-cover mr-20 basis-5/12 h-3/6">
+        <img className="w-full rounded-lg" src={image} alt={title} />
+      </div>
+      <div className="w-full basis-7/12 flex flex-col py-5">
         <h2 className="text-3xl font-bold py-2 ">{title}</h2>
         <p className="text-2xl font-bold py-2 border-b border-gray-400">{`₩ ${price
           .toString()

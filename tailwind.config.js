@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         brand: '#AD8B73',
       },
+      borderColor: {
+        brand: '#AD8B73',
+      },
       backgroundColor: {
         brand: '#F8EDE3',
         brandBrown: '#AD8B73',
@@ -19,5 +22,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp'), require('tailwind-scrollbar-hide')],
 };

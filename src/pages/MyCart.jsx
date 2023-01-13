@@ -5,12 +5,12 @@ import { FaEquals } from 'react-icons/fa';
 import PriceCard from '../components/PriceCard';
 import Button from '../components/ui/Button';
 import useCart from '../hooks/useCart';
-import { useNavigate } from 'react-router-dom';
+import useRedirectPage from '../hooks/useRedirectPage';
 
 const SHIPPING = 3000;
 
 export default function MyCart() {
-  const navigate = useNavigate();
+  const [setPage] = useRedirectPage();
   const {
     cartQuery: { isLoading, data: products },
   } = useCart();
@@ -29,7 +29,7 @@ export default function MyCart() {
       {!hasProducts && (
         <div className="flex flex-col justify-center items-center flex-1">
           <img src="./images/sloth.png" className=" w-52 h-52 mb-10" alt="brand logo" />
-          <Button text="상품 담으러 가기" size="equalMedium" onClick={() => navigate('/')} />
+          <Button text="상품 담으러 가기" size="equalMedium" onClick={() => setPage('/')} />
         </div>
       )}
       {hasProducts && (
