@@ -1,12 +1,12 @@
 import React from 'react';
-import QuestionCard from '../components/QuestionCard';
+import QuestionList from '../components/QuestionList';
 import Button from '../components/ui/Button';
 import { useAuthContext } from '../context/AuthContext';
 import useRedirectPage from '../hooks/useRedirectPage';
 
 export default function Questions() {
-  const { user } = useAuthContext();
   const [setPage] = useRedirectPage();
+  const { user } = useAuthContext();
 
   return (
     <section className="flex flex-col h-[calc(100vh-65px)]">
@@ -17,13 +17,21 @@ export default function Questions() {
           운영자 답변은 최소 하루에서 최대 이틀이 소요됩니다.
         </p>
       </div>
-      <div className="flex flex-col justify-center items-center w-2/3 mx-auto">
-        <div className="py-7 w-full text-right border-b">
-          <Button text="질문하기" size="large" onClick={() => setPage('/questions/new')} />
+      <div className="flex flex-col justify-center items-center w-2/3 md:w-1/2 mx-auto">
+        <div className="py-7 w-full text-right">
+          <Button
+            text="질문하기"
+            size="large"
+            onClick={() => {
+              if (!user) {
+                alert('로그인 후 이용해주세요. 홈으로 돌아갑니다.');
+                return setPage('/');
+              }
+              return setPage('/questions/new');
+            }}
+          />
         </div>
-        <ul className="flex flex-col justify-center">
-          <QuestionCard user={user} />
-        </ul>
+        <QuestionList />
       </div>
     </section>
   );

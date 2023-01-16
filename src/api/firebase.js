@@ -80,13 +80,10 @@ export async function getProducts() {
   return get(firstQuery).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
-      // console.log(snapshot.val());
     }
     return [];
   });
 }
-
-export async function nextProducts() {}
 
 export async function getCart(userId) {
   return get(ref(database, `carts/${userId}`)).then((snapshot) => {
@@ -101,4 +98,34 @@ export async function addOrUpdateToCart(userId, product) {
 
 export async function removeFromCart(userId, productId) {
   return remove(ref(database, `carts/${userId}/${productId}`));
+}
+
+export async function addNewQuestion(text, image, user) {
+  const id = uuid();
+  return set(ref(database, `questions/${id}`), {
+    ...text,
+    id,
+    image,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    uid: user.uid,
+    title: text.title,
+    question: text.question,
+    createdAt: new Date().toLocaleString(),
+    like: 0,
+    visitor: 0,
+  });
+}
+
+export async function getQuestions() {
+  return get(ref(database, 'questions')).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
+  });
+}
+
+export async function removeQuestion(questionId) {
+  return remove(ref(database, `questions/${questionId}`));
 }

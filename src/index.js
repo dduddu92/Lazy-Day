@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProtectedRoute from './pages/ProtectedRoute';
 import Questions from './pages/Questions';
 import Writing from './pages/Writing';
+import QuestionDetail from './pages/QuestionDetail';
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/questions/new',
-        element: <Writing />,
+        element: (
+          <ProtectedRoute>
+            <Writing />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/questions/:id',
+        element: <QuestionDetail />,
       },
     ],
   },

@@ -10,6 +10,7 @@ export default function NewProduct() {
   const [success, setSuccess] = useState();
   const fileRef = useRef();
   const { addProduct } = useProducts();
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'file') {

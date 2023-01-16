@@ -16,7 +16,7 @@ const buttonDesigns = {
   cancel: 'bg-white text-brand border border-brand ',
 };
 
-export default function Button({ text, onClick, size, margin, design = 'default' }) {
+export default function Button({ text, onClick, size, margin, design = 'default', disabled }) {
   let buttonSize = buttonSizes[size];
   let buttonMargin = buttonMargins[margin];
   let buttonDesign = buttonDesigns[design];
@@ -24,6 +24,7 @@ export default function Button({ text, onClick, size, margin, design = 'default'
     <button
       className={`${buttonDesign} ${buttonSize} rounded-md hover:brightness-110 ${buttonMargin}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {text}
     </button>
