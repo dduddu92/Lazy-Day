@@ -11,7 +11,7 @@ export default function QuestionList() {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <ul className="flex flex-col justify-center w-full">
+      <ul className="flex flex-col justify-center w-full mb-10">
         {questions &&
           questions.map((question) => <QuestionCard key={question.id} question={question} />)}
       </ul>

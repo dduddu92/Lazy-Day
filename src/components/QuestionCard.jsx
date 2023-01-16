@@ -6,7 +6,6 @@ export default function QuestionCard({
   question: { id, createdAt, displayName, image, photoURL, title, question: content },
 }) {
   const navigate = useNavigate();
-  console.log(question);
   return (
     <li
       onClick={() => {
