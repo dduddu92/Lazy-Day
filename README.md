@@ -86,6 +86,12 @@ $ yarn start
 
   - 로그아웃은 `firebase`에서 제공하는 `signOut()`으로 로그아웃 처리.
 
+  ```js
+  export function logout() {
+    signOut(auth);
+  }
+  ```
+
 2. 상품 등록하기(Admin User만 가능)
 
 - `RealTime DateBase`의 `set()`을 이용하여 상품 등록
@@ -106,11 +112,11 @@ export async function addNewProduct(product, image) {
 3. 상품 불러오기
 
 - 상품은 관리자가 등록하지 않는 이상, 자주 업데이트 되는 데이터는 아니므로 `RealTime DateBase`의 `get()`을 사용하여 단 한번만 호출하게 하였음.
-- 추후 Pagenation 또는 infinite scroll을 구현하게 될 경우 변경 필요.
+- 추후 Pagenation 또는 infinite scroll 구현 예정
 
 ```js
 export async function getProducts() {
-  const firstQuery = query(ref(database, 'products'), orderByKey('price'), limitToFirst(20));
+  const firstQuery = query(ref(database, 'products'), limitToFirst(20));
   return get(firstQuery).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
@@ -147,6 +153,7 @@ export async function removeFromCart(userId, productId) {
 
 - 게시글 작성도 상품 등록과 마찬가지가 `set()`메서드를 이용하는건 동일하다.
 - database에 저장되는 구조는 아래와 같다.
+- 최신순으로 정렬하기 위해 timeStamp도 함께 저장하였다.
 
 ```js
 export async function addNewQuestion(text, image, user) {
@@ -160,9 +167,10 @@ export async function addNewQuestion(text, image, user) {
     uid: user.uid,
     title: text.title,
     question: text.question,
+    timeStamp: Date.now(),
     createdAt: new Date().toLocaleString(),
-    like: 0, // 구현 예정
-    visitor: 0, //구현 예정
+    like: 0,
+    visitor: 0,
   });
 }
 ```
@@ -200,7 +208,23 @@ export async function getQuestions() {
 
 7. 게시글 수정하기
 
-- 작성 중 :)
+- 처음에는 게시글 작성과 수정을 하나의 함수로 관리하려고 하였으나, 처음 게시글이 작성된 날짜는 변하면 안되므로, add와 update를 분리.
+- 수정된 날짜 및 시간을 알 수 있도록, `updatedAt`도 추가.
+
+```js
+export async function updateQuestion(text, image, user) {
+  return set(ref(database, `questions/${text.id}`), {
+    ...text,
+    image,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    uid: user.uid,
+    title: text.title,
+    question: text.question,
+    updatedAt: new Date().toLocaleString(),
+  });
+}
+```
 
 8. 게시글 삭제하기
 
@@ -211,3 +235,15 @@ export async function removeQuestion(questionId) {
   return remove(ref(database, `questions/${questionId}`));
 }
 ```
+
+<br/>
+
+---
+
+## 🍀 구현 예정
+
+- [ ] 게시글 좋아요 및 조회수 구현
+- [ ] 게시글 댓글 기능
+- [ ] Home에 등록된 상품들 카테고리 별 분류 작업
+- [ ] 상품 리스트 : 무한 스크롤
+- [ ] 게시판 : 페이지 네이션
