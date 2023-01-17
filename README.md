@@ -1,70 +1,213 @@
-# Getting Started with Create React App
+# Lazy Day (Shopping Mall using Firebase & React Query)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🍀 프로젝트 정보
 
-## Available Scripts
+1. 프로젝트 명 : Lazy Day
+2. 프로젝트 기간 : 2023. 1.5 ~ 2023. 1.17
+3. 프로젝트 인원: 단독 진행 프로젝트
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🍀 실행 방법
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+$ git clone https://github.com/dduddu92/lazy-day.git
+$ cd lazy-day
+$ yarn install
+$ yarn start
+```
 
-### `npm test`
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🍀 배포 링크
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> https://lazy-day-dduddu92.vercel.app/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br/>
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🍀 기술스택
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![react](https://img.shields.io/badge/react-18.2.0-61DAFB?logo=react)
+![react-query](https://img.shields.io/badge/react--query-4.22.0-FF4154?logo=react-query)
+![react-router-dom](https://img.shields.io/badge/react--router--dom-6.6.1-blue?logo=react-router)  
+![firebase](https://img.shields.io/badge/firebase-9.15.0-E1C537?logo=firebase)
+![tailwind-css](https://img.shields.io/badge/tailwind--css-3.2.4-06B6D4?logo=tailwind-css)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **선정 이유**
 
-## Learn More
+  - _Tailwind Css_
+    - Utility-First 컨셉을 가진 CSS 프레임워크. (미리 세팅된 유틸리티 클래스를 활용하여 HTML 코드 내에서 스타일링함) Utility-First 덕에 쉽고 빠르게 원하는 디자인을 개발할 수 있다는 장점이 있음.
+    - style을 위한 코드도 HTML 코드 안에 있으므로, HTML와 CSS 파일을 별도로 관리할 필요가 없다는 장점이 존재함.
+    - 그러나 초반에는 스타일의 클래스명을 익혀야 하는 과정이 필요하므로, 개발하는 내내 문서를 참고해야 하는 번거로움이 있다.
+  - _Firebase RealTime DataBase_
+    - 프론트엔드 단독 진행 프로젝트이므로 백엔드를 대신하여 상품 리스트 및 게시글을 저장할 데이터 구축에 활용하기 위함.
+    - 구글 소셜 로그인 API를 지원함.
+    - DB를 자체적으로 자유롭게 구축할 수 있으므로 개인 프로젝트에 사용하기 용이하다고 판단하였음.
+  - _React-Router-Dom_
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    - React의 SPA(Single Page Application)특성상 하나의 페이지에서 모든 렌더링이 이루어진다.
+    - 클라이언트 측 라우팅(Client side routing)을 사용하면 서버에서 다른 문서를 요청하지 않고도 링크 클릭을 통해 URL을 업데이트 할 수 있다.
+    - 브라우저가 완전히 새로운 문서를 요청하거나 다음 페이지를 위해 CSS와 자바스크립트를 다시 평가할 필요가 없기 때문에 더 빠른 사용자 경험이 가능함.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - _TanStack Query (React-Query)_
 
-### Code Splitting
+    - React Application에서 서버 상태를 불러오고, 캐싱하며, 지속적으로 동기화하고 업데이트하는 작업을 도와주는 라이브러리
+    - Client 상태 작업과 Server 상태 작업을 분리할 수 있다.
+    - 쇼핑몰의 특성 상 client에서 관리하는 데이터보다 서버에서 관리하는 데이터가 더 많기 때문에 사용에 적합하다고 판단되었음.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br />
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🍀 구현 기능
 
-### Making a Progressive Web App
+1. Firebase를 이용한 구글 소셜 로그인 기능 구현
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 로그인 & 로그아웃
 
-### Advanced Configuration
+  - `firebase`에서 제공하는 `signInWithPopup` 메소드를 이용하여 구현.
+  - firebase.js 파일에 login 함수를 만들어 사용.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  ```js
+  export function login() {
+    signInWithPopup(auth, provider).catch(console.error);
+  }
+  ```
 
-### Deployment
+  - 로그아웃은 `firebase`에서 제공하는 `signOut()`으로 로그아웃 처리.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. 상품 등록하기(Admin User만 가능)
 
-### `npm run build` fails to minify
+- `RealTime DateBase`의 `set()`을 이용하여 상품 등록
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```js
+export async function addNewProduct(product, image) {
+  const id = uuid();
+  return set(ref(database, `products/${id}`), {
+    ...product,
+    id,
+    price: parseInt(product.price),
+    image,
+    options: product.options.split(','),
+  });
+}
+```
+
+3. 상품 불러오기
+
+- 상품은 관리자가 등록하지 않는 이상, 자주 업데이트 되는 데이터는 아니므로 `RealTime DateBase`의 `get()`을 사용하여 단 한번만 호출하게 하였음.
+- 추후 Pagenation 또는 infinite scroll을 구현하게 될 경우 변경 필요.
+
+```js
+export async function getProducts() {
+  const firstQuery = query(ref(database, 'products'), orderByKey('price'), limitToFirst(20));
+  return get(firstQuery).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
+  });
+}
+```
+
+4. 장바구니 목록 불러오기, 수량 추가 및 수정 하기, 카트 목록에서 삭제하기
+
+- `get()`메서드를 이용하여 카트 정보를 불러옴.
+- `set()`메서드를 이용하여 현재 로그인한 유저의 uid와 상품이 가진 고유 id를 이용하여 수량을 추가하거나 업데이트 할 수 있게 하였음.
+- 카트 목록에서 상품 삭제는 `remove()`메서드로 구현.
+
+```js
+export async function getCart(userId) {
+  return get(ref(database, `carts/${userId}`)).then((snapshot) => {
+    const items = snapshot.val() || {};
+    return Object.values(items);
+  });
+}
+
+export async function addOrUpdateToCart(userId, product) {
+  return set(ref(database, `carts/${userId}/${product.id}`), product);
+}
+
+export async function removeFromCart(userId, productId) {
+  return remove(ref(database, `carts/${userId}/${productId}`));
+}
+```
+
+5. 게시글 작성하기
+
+- 게시글 작성도 상품 등록과 마찬가지가 `set()`메서드를 이용하는건 동일하다.
+- database에 저장되는 구조는 아래와 같다.
+
+```js
+export async function addNewQuestion(text, image, user) {
+  const id = uuid();
+  return set(ref(database, `questions/${id}`), {
+    ...text,
+    id,
+    image,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    uid: user.uid,
+    title: text.title,
+    question: text.question,
+    createdAt: new Date().toLocaleString(),
+    like: 0, // 구현 예정
+    visitor: 0, //구현 예정
+  });
+}
+```
+
+- 사용자가 입력한 값은 `handleChange()`로 관리, `text`와 `file`의 `state`는 분리하여 관리
+
+```js
+const handleChange = (e) => {
+  const { name, value, files } = e.target;
+  if (name === 'file') {
+    setFile(files && files[0]);
+    return;
+  }
+  setText((text) => ({
+    ...text,
+    [name]: value,
+  }));
+};
+```
+
+6. 게시글 불러오기
+
+- `get()`메서드를 이용하여 게시글을 불러옴.
+
+```js
+export async function getQuestions() {
+  return get(ref(database, 'questions')).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
+  });
+}
+```
+
+7. 게시글 수정하기
+
+- 작성 중 :)
+
+8. 게시글 삭제하기
+
+- 마찬가지로 간단하게 `remove()`메서드를 이용하여 게시글의 고유 id를 이용해 게시글을 삭제하였다.
+
+```js
+export async function removeQuestion(questionId) {
+  return remove(ref(database, `questions/${questionId}`));
+}
+```

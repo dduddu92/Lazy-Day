@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { useAuthContext } from '../context/AuthContext';
+import { uploadImage } from '../api/uploader';
 import useQuestion from '../hooks/useQuestion';
 import useRedirectPage from '../hooks/useRedirectPage';
 
@@ -13,10 +14,9 @@ export default function QuestionDetail() {
       question: { id, uid, createdAt, displayName, image, photoURL, title, question: content },
     },
   } = useLocation();
-
+  const { removeItem, addQuestion } = useQuestion();
   const [editMode, setEditMode] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const { removeItem } = useQuestion();
   const [setPage] = useRedirectPage();
   const [newText, setNewText] = useState({ ...question });
   const [file, setFile] = useState();
@@ -31,6 +31,25 @@ export default function QuestionDetail() {
       ...newText,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsUploading(true);
+    const text = { ...question, title: newText.title, question: newText.question };
+    uploadImage(file) //
+      .then((url) => {
+        addQuestion.mutate(
+          { text, url, user },
+          {
+            onSuccess: () => {
+              alert('수정되었습니다.');
+              setIsUploading(false);
+              setPage('/questions');
+            },
+          },
+        );
+      });
   };
 
   return (
@@ -112,7 +131,14 @@ export default function QuestionDetail() {
           </div>
           {editMode && (
             <>
-              <input type="file" accept="image/*" name="file" required />
+              <input
+                type="file"
+                accept="image/*"
+                name="file"
+                required
+                onChange={handleChange}
+                className="mt-3"
+              />
               <div className="flex justify-end mt-3">
                 <Button
                   text="취소"
@@ -128,6 +154,7 @@ export default function QuestionDetail() {
                   size="large"
                   margin="left3"
                   disabled={isUploading}
+                  onClick={handleSubmit}
                 />
               </div>
             </>

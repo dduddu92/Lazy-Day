@@ -6,6 +6,7 @@ export default function QuestionCard({
   question: { id, createdAt, displayName, image, photoURL, title, question: content },
 }) {
   const navigate = useNavigate();
+
   return (
     <li
       onClick={() => {
@@ -26,7 +27,7 @@ export default function QuestionCard({
           <span className="ml-2 text-gray-400">조회 0</span> */}
         </div>
       </div>
-      <div className="w-24 h-24 rounded-xl border border-brand overflow-hidden bg-white mr-4">
+      <div className="w-24 h-24 shrink-0 rounded-xl border border-brand overflow-hidden bg-white mr-4">
         <img src={image} alt="attached file" />
       </div>
     </li>

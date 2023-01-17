@@ -118,7 +118,8 @@ export async function addNewQuestion(text, image, user) {
 }
 
 export async function getQuestions() {
-  return get(ref(database, 'questions')).then((snapshot) => {
+  const questionQuery = query(ref(database, 'questions'), orderByKey('createdAt'));
+  return get(questionQuery).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
     }
@@ -129,3 +130,5 @@ export async function getQuestions() {
 export async function removeQuestion(questionId) {
   return remove(ref(database, `questions/${questionId}`));
 }
+
+//업데이트 기능 하나 만들기
