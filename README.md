@@ -111,8 +111,8 @@ export async function addNewProduct(product, image) {
 
 3. 상품 불러오기
 
-- 상품은 관리자가 등록하지 않는 이상, 자주 업데이트 되는 데이터는 아니므로 `RealTime DateBase`의 `get()`을 사용하여 단 한번만 호출하게 하였음.
-- 추후 Pagenation 또는 infinite scroll 구현 예정
+- `RealTime DateBase`의 `get()`을 사용하여 호출.
+- 추후 infinite scroll 적용 예정
 
 ```js
 export async function getProducts() {
@@ -151,9 +151,9 @@ export async function removeFromCart(userId, productId) {
 
 5. 게시글 작성하기
 
-- 게시글 작성도 상품 등록과 마찬가지가 `set()`메서드를 이용하는건 동일하다.
+- 게시글 작성도 상품 등록과 마찬가지가 `set()`메서드를 이용하는건 동일.
 - database에 저장되는 구조는 아래와 같다.
-- 최신순으로 정렬하기 위해 timeStamp도 함께 저장하였다.
+- 최신순으로 정렬하기 위해 timeStamp도 함께 저장.
 
 ```js
 export async function addNewQuestion(text, image, user) {
@@ -175,7 +175,7 @@ export async function addNewQuestion(text, image, user) {
 }
 ```
 
-- 사용자가 입력한 값은 `handleChange()`로 관리, `text`와 `file`의 `state`는 분리하여 관리
+- 사용자가 입력한 값은 `handleChange()`로 관리, `text`와 `file`의 `state`는 분리하여 관리.
 
 ```js
 const handleChange = (e) => {
@@ -228,7 +228,7 @@ export async function updateQuestion(text, image, user) {
 
 8. 게시글 삭제하기
 
-- 마찬가지로 간단하게 `remove()`메서드를 이용하여 게시글의 고유 id를 이용해 게시글을 삭제하였다.
+- 마찬가지로 간단하게 `remove()`메서드를 이용하여 게시글의 고유 id를 이용해 게시글을 삭제.
 
 ```js
 export async function removeQuestion(questionId) {
