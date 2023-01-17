@@ -14,7 +14,7 @@ export default function QuestionDetail() {
       question: { id, uid, createdAt, displayName, image, photoURL, title, question: content },
     },
   } = useLocation();
-  const { removeItem, addQuestion } = useQuestion();
+  const { removeItem, updateItem } = useQuestion();
   const [editMode, setEditMode] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [setPage] = useRedirectPage();
@@ -39,7 +39,7 @@ export default function QuestionDetail() {
     const text = { ...question, title: newText.title, question: newText.question };
     uploadImage(file) //
       .then((url) => {
-        addQuestion.mutate(
+        updateItem.mutate(
           { text, url, user },
           {
             onSuccess: () => {
@@ -55,7 +55,7 @@ export default function QuestionDetail() {
   return (
     <section className="w-full h-[calc(100vh-65px)] flex justify-center items-center">
       <div className="w-full mx-5 h-4/5 flex flex-col md:w-1/2 md:m-0">
-        <form className="flex flex-col h-full justify-between">
+        <form className="flex flex-col h-full justify-between" onSubmit={handleSubmit}>
           <div className="flex flex-col flex-1">
             <div className={`${editMode && 'border-b'} mb-10 bg-transparent relative`}>
               {editMode ? (
@@ -135,9 +135,9 @@ export default function QuestionDetail() {
                 type="file"
                 accept="image/*"
                 name="file"
-                required
                 onChange={handleChange}
                 className="mt-3"
+                required
               />
               <div className="flex justify-end mt-3">
                 <Button
@@ -154,7 +154,6 @@ export default function QuestionDetail() {
                   size="large"
                   margin="left3"
                   disabled={isUploading}
-                  onClick={handleSubmit}
                 />
               </div>
             </>

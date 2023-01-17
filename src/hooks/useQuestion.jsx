@@ -1,5 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getQuestions as fetchQuestions, addNewQuestion, removeQuestion } from '../api/firebase';
+import {
+  getQuestions as fetchQuestions,
+  addNewQuestion,
+  removeQuestion,
+  updateQuestion,
+} from '../api/firebase';
 
 export default function useQuestion() {
   const queryClient = useQueryClient();
@@ -9,11 +14,15 @@ export default function useQuestion() {
     onSuccess: () => queryClient.invalidateQueries(['questions']),
   });
 
+  const updateItem = useMutation(({ text, url, user }) => updateQuestion(text, url, user), {
+    onSuccess: () => queryClient.invalidateQueries(['questions']),
+  });
+
   const removeItem = useMutation((id) => removeQuestion(id), {
     onSuccess: (id) => {
       queryClient.invalidateQueries(['questions', id]);
     },
   });
 
-  return { questionsQuery, addQuestion, removeItem };
+  return { questionsQuery, addQuestion, removeItem, updateItem };
 }

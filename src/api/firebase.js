@@ -117,6 +117,19 @@ export async function addNewQuestion(text, image, user) {
   });
 }
 
+export async function updateQuestion(text, image, user) {
+  return set(ref(database, `questions/${text.id}`), {
+    ...text,
+    image,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    uid: user.uid,
+    title: text.title,
+    question: text.question,
+    updatedAt: new Date().toLocaleString(),
+  });
+}
+
 export async function getQuestions() {
   const questionQuery = query(ref(database, 'questions'), orderByKey('createdAt'));
   return get(questionQuery).then((snapshot) => {

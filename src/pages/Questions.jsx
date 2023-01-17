@@ -17,8 +17,8 @@ export default function Questions() {
           운영자 답변은 최소 하루에서 최대 이틀이 소요됩니다.
         </p>
       </div>
-      <div className="flex flex-col justify-center items-center w-2/3 md:w-1/2 mx-auto">
-        <div className="py-7 w-full text-right">
+      <div className="flex flex-col justify-center items-center sm:w-4/5 md:w-2/3 lg:w-1/2 mx-auto">
+        <div className="py-7 w-full text-right pr-4">
           <Button
             text="질문하기"
             size="large"
