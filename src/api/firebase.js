@@ -8,16 +8,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import {
-  getDatabase,
-  ref,
-  set,
-  get,
-  remove,
-  query,
-  limitToFirst,
-  orderByKey,
-} from 'firebase/database';
+import { getDatabase, ref, set, get, remove, query, limitToFirst } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -70,13 +61,7 @@ export async function addNewProduct(product, image) {
 }
 
 export async function getProducts() {
-  const firstQuery = query(ref(database, 'products'), orderByKey('price'), limitToFirst(20));
-  // return get(ref(database, 'products')).then((snapshot) => {
-  //   if (snapshot.exists()) {
-  //     return Object.values(snapshot.val());
-  //   }
-  //   return [];
-  // }
+  const firstQuery = query(ref(database, 'products'), limitToFirst(20));
   return get(firstQuery).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
@@ -111,9 +96,19 @@ export async function addNewQuestion(text, image, user) {
     uid: user.uid,
     title: text.title,
     question: text.question,
+    timeStamp: Date.now(),
     createdAt: new Date().toLocaleString(),
     like: 0,
     visitor: 0,
+  });
+}
+
+export async function getQuestions() {
+  return get(ref(database, 'questions')).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
   });
 }
 
@@ -130,18 +125,6 @@ export async function updateQuestion(text, image, user) {
   });
 }
 
-export async function getQuestions() {
-  const questionQuery = query(ref(database, 'questions'), orderByKey('createdAt'));
-  return get(questionQuery).then((snapshot) => {
-    if (snapshot.exists()) {
-      return Object.values(snapshot.val());
-    }
-    return [];
-  });
-}
-
 export async function removeQuestion(questionId) {
   return remove(ref(database, `questions/${questionId}`));
 }
-
-//업데이트 기능 하나 만들기

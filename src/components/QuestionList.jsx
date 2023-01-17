@@ -13,7 +13,11 @@ export default function QuestionList() {
       {error && <p>{error}</p>}
       <ul className="flex flex-col justify-center w-full mb-10">
         {questions &&
-          questions.map((question) => <QuestionCard key={question.id} question={question} />)}
+          questions
+            .sort((a, b) => {
+              return b.timeStamp - a.timeStamp;
+            })
+            .map((question) => <QuestionCard key={question.id} question={question} />)}
       </ul>
     </>
   );
