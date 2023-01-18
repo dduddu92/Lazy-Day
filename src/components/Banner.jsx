@@ -6,7 +6,7 @@ export default function Banner() {
       <div className="w-full h-full bg-cover bg-banner opacity-80" />
       <div className="absolute w-full top-32 text-center text-gray-50 drop-shadow-2xl">
         <h2 className="text-6xl font-gangwon">A lazy day with a cup of coffee</h2>
-        <p className="text-3xl font-gangwon">Shop With Us</p>
+        <p className="text-4xl font-gangwon">Reasonable price, High quality</p>
       </div>
     </section>
   );

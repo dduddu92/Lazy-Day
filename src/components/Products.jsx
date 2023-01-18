@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import useProducts from '../hooks/useProducts';
+import Loading from './Loading';
 
 export default function Products() {
   const {
@@ -9,7 +10,7 @@ export default function Products() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {error && <p>{error}</p>}
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-10">
         {products &&

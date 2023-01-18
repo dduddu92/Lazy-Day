@@ -1,6 +1,7 @@
 import React from 'react';
 import QuestionCard from '../components/QuestionCard';
 import useQuestion from '../hooks/useQuestion';
+import Loading from './Loading';
 
 export default function QuestionList() {
   const {
@@ -9,7 +10,7 @@ export default function QuestionList() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {error && <p>{error}</p>}
       <ul className="flex flex-col justify-center w-full mb-10">
         {questions &&

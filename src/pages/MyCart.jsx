@@ -6,6 +6,7 @@ import PriceCard from '../components/PriceCard';
 import Button from '../components/ui/Button';
 import useCart from '../hooks/useCart';
 import useRedirectPage from '../hooks/useRedirectPage';
+import Loading from '../components/Loading';
 
 const SHIPPING = 3000;
 
@@ -15,7 +16,8 @@ export default function MyCart() {
     cartQuery: { isLoading, data: products },
   } = useCart();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
+
   const hasProducts = products && products.length > 0;
   const totalPrice =
     products &&
